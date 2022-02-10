@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+  <html lang="en-us">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Kutz</title>
+    <script type="text/javascript" src="kkutz.js"></script>
+    <link rel="stylesheet" type="text/css" href="kkutz.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .kutz {
+        color: rgb(126, 181, 243);
+      }
+
+      .fa-shopping-bag {
+        float: right;
+        padding: 8px 
+      }
+  
+      label {
+        display: block;
+      }
+      
+      #productContainer {
+        display: grid;
+        justify-content: space-around;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: 230px 100px 230px 100px;
+        padding: 10px;
+      }
+
+      .button {
+        border: none;
+        height: 35px;
+        border-radius: 3px;
+        margin: 0 0 10px 0;
+        font-family:"century gothic", sans-serif;
+        font-size: 1em;
+      }
+
+      #shoppingBag {
+        align-content: center;
+        display: block;
+        border-collapse: collapse;
+        margin: 0;
+        width: 100%;
+      }
+       
+      #bagTable {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      #col1 {
+        width: 175px;
+      }
+
+      #col2 {
+        width: 175px;
+      }
+
+      #col3 {
+        width: 75px;
+      }      
+      #col4 {
+        width: 75px;
+      }
+       
+      .bagImg {
+         max-width: 30%;
+         max-height: 30%;
+      }
+
+      #bagButtons {
+      display: flex;
+      flex-direction: row-reverse;
+      }
+
+      .aligned {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .col {
+        flex: 50%;
+      }
+
+      input {
+        font-family:"century gothic", sans-serif;
+      }
+
+      #formButtons {
+        display: flex;
+        justify-content: center;
+      }
+
+      #bottom {
+          opacity: .5;
+          text-align: right;
+      }
+
+      #bottom > p {
+          margin: 0;
+      }
+      
+    </style>
+  </head>
+  <body onload="setUp()">
+    <div name="kutzDoc" class="document">
+      <div id="header">
+        <h1>K-kutz</h1>
+      </div> <!--header -->
+      <div class="content">
+        <div id="navBar">
+          <ul id="navBarList">
+            <a class="navBarItem home" href="index.html"><li>Home</li></a>
+            <a class="navBarItem kutz" href="kutz.html"><li>Kutz</li></a>
+            <a class="navBarItem sale" href="sale.html"><li>Sale</li></a>
+            <a class="navBarItem svg"  href="svg.html"><li>SVG</li></a>
+            <i class="fa fa-shopping-bag" style="font-size:2em;color:white;"onclick="goToBag()"></i>
+          </ul>
+        </div> <!-- navBar -->
+
+
+        <!-- product container -->
+        <div id="productContainer">
+          <div>
+            <img id="one_img" src="images/currently watching.jpg">
+          </div>
+          <div>
+            <img id="two_img" src="images/not_your_noona.png">
+          </div>
+          <div>
+            <img id="three_img" src="images/Kdrama_one_isnt_enough.jpg">
+          </div>
+          <div id="one_info">
+              <div class="price">$1.99</div>
+              <button class="button" id="button1" onclick="addToBag('1.99', '1');">Add tobag</button>
+          </div>
+          <div id="two_info">
+              <div class="price">$2.99</div>
+              <button class="button" id="button2" onclick="addToBag('2.99', '2');">Add tobag</button>
+          </div>            
+          <div id="three_info">
+              <div class="price">$1.99</div>
+              <button class="button" id="button3" onclick="addToBag('1.99', '3');">Add tobag</button>
+          </div>
+          <div> 
+            <img id="four_img" src="images/single_life.png">
+          </div>
+          <div>
+            <img id="five_img" src="images/goblin.jpg">
+          </div>
+          <div>
+            <img id="six_img" src="images/bandwidth.png">
+          </div>
+          <div id="four_info">
+              <div class="price">$3.99</div>
+              <button class="button" id="button4" onclick="addToBag('3.99', '4');">Add tobag</button>
+          </div>
+          <div id="five_info">
+              <div class="price">$4.99</div>
+              <button class="button" id="button5" onclick="addToBag('4.99', '5');">Add tobag</button>
+          </div>            
+          <div id="six_info">
+              <div class="price">$3.99</div>
+              <button class="button" id="button6" onclick="addToBag('3.99', '6');">Add tobag</button>
+          </div>
+        </div> <!-- productContainer -->
+
+
+        <!-- shopping bag -->
+        <div name="shoppingBag" id="shoppingBag">
+          <table id="bagTable">
+            <thead>
+              <tr id="bagHead">
+                <th id="col1">Product</th>
+                <th id="col2">Description</th>
+                <th id="col3">Remove</th>
+                <th id="col4">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="item" id="1">
+                <td><img class="bagImg" src="images/currently watching.jpg"></td>
+                <td>Currently Watching</td>
+                <td><span onclick="removeFromBag(1.99, '1');" class="fa fa-trash"alt="X"></span></td>
+                <td>$1.99</td>
+              </tr>
+              <tr class="item" id="2">
+                <td><img class="bagImg" src="images/not_your_noona.png"></td>
+                <td>Not Your Noona</td>
+                <td><span onclick="removeFromBag('2.99', '2');" class="fa fa-trash"alt="X"></span></td>
+                <td>$2.99</td>
+              </tr>
+              <tr class="item" id="3">
+                <td><img class="bagImg" src="images/Kdrama_one_isnt_enough.jpg"></td>
+                <td>One Isn't Enough</td>
+                <td><span onclick="removeFromBag('1.99', '3');" class="fa fa-trash"alt="X"></span></td>
+                <td>$1.99</td>
+              </tr>
+              <tr class="item" id="4">
+                <td><img class="bagImg" src="images/single_life.png"></td>
+                <td>Single Life on Deck</td>
+                <td><span onclick="removeFromBag('3.99', '4');" class="fa fa-trash"alt="X"></span></td>
+                <td>$3.99</td>
+              </tr>
+              <tr class="item" id="5">
+                <td><img class="bagImg" src="images/goblin.jpg"></td>
+                <td>Goblin's Bride</td>
+                <td><span onclick="removeFromBag('4.99', '5');" class="fa fa-trash"alt="X"></span></td>
+                <td>$4.99</td>
+              </tr>
+              <tr class="item" id="6">
+                <td><img class="bagImg" src="images/bandwidth.png"></td>
+                <td>Kdramas Bandwidth</td>
+                <td><span onclick="removeFromBag('3.99', '6');" class="fa fa-trash"alt="X"></span></td>
+                <td>$3.99</td>
+              </tr>
+               <tr id="bagFoot">
+                 <td>Total</td>
+                 <td colspan="2">&nbsp;</td>
+                 <td id="total"><em>$0.00</em></td>
+               </tr>
+            </tbody>
+          </table>
+          <div id="bagButtons">
+            <button id="checkout" class="button bagButton" type="button"onclick="setUpCheckout('shoppingBag')">Checkout
+            </button><span>&nbsp;</span>
+            <button id="continueShopping" class="button bagButton" type="button"onclick="returnToProducts('shoppingBag')">Continue Shopping</button>
+            <span>&nbsp;</span>
+          </div> <!-- bagButtons -->
+        </div> <!-- shoppingBag -->
+
+
+        <!-- checkout form -->
+        <form id="form" form name="form" action="purchaseReview.php" method="post">
+          <div id="checkoutForm"> 
+            <div class="aligned">
+               <!-- customer information column-->
+              <div class="col">
+                <h2>Customer Information</h2>
+                <div class="col">
+                  <!-- first name -->
+                  <label for="firstName">First Name</label>
+                  <input id="nameFocus" name="firstName" onBlur="chkText(this.value,'firstName');" size="20"   placeholder="John"/>
+                  <br><span id="firstName" style="color: rgb(126, 181, 243)">First name required</span>
+                  <!-- Last name -->
+                  <label for="lastName">Last Name</label>
+                  <input name="lastName" onBlur="chkText(this.value, 'lastName')"size="20" placeholder="Doe"/>
+                  <br><span id="lastName" style="color:rgb(126, 181, 243)">Last name required</span>
+                  <!-- phone number -->
+                  <label for="phoneNum">Phone Number</label>
+                  <input name="phoneNum" onInput="chkPhoneNumber(this.value,'phoneNum')" size="11" placeholder="000-000-0000"/>
+                  <br><span id="phoneNum" style="color:rgb(126, 181, 243)">000-000-0000 or 0000000000</span>
+                  <!-- email -->
+                  <label for="email">Email Adress</label>
+                  <input name="email" onInput="chkEmail(this.value, 'email')"size="20"    placeholder="johndoe@email.com"/>
+                  <br><span id="email" style="color:rgb(126, 181, 243)">Valid   email address required</span>
+                  <!-- address -->
+                  <label for="address">Address</label>
+                  <input name="address" onInput="chkAddress(this.value, 'address');  "size="30"/>
+                  <br><span id="address" style="color:rgb(126, 181, 243)">Please   enter your address</span>
+                  <!-- city -->
+                  <label for="city">City</label>
+                  <input name="city" onInput="chkText(this.value, 'city');"size="30"/>
+                  <br><span id="city" style="color:rgb(126, 181, 243)">Please enter your city</span>
+                  <!-- state -->
+                  <label for="state">State</label>
+                  <input name="state" onInput="chkStateAbbr(this.value, 'state')"size="2" placeholder="AZ"/>
+                  <br><span id="state" style="color:rgb(126, 181, 243)">2 letter abbreviation</span>
+                  <label for="zip">Zip Code</label>
+                  <input name="zipCode" onInput="chkZip(this.value, 'zip');" size="20" />
+                  <br><span id="zip" style="color:rgb(126, 181, 243)">00000 or 00000-0000</span> 
+                </div> <!-- col -->
+              </div> <!-- Customer Information-->
+
+              <!-- Payment column-->
+              <div class="col"> 
+                <h2>Payment</h2>
+                <div class="col"></div>
+                  <label for="type">Card Type</label>
+                  <!-- this container is purely cosmetic; the form looked bland-->
+                  <div class="icon-container">
+                    <input type="radio" name="type" id="visa" value="Visa" checked="checked"/>
+                    <i class="fa fa-cc-visa" style="color:grey;"></i>
+                    <input type="radio" name="type" id="mc" value="Master Card"/>
+                    <i class="fa fa-cc-mastercard" style="color:grey;"></i>
+                    <input type="radio" name="type" id="disc" value="Discover Card"/>
+                    <i class="fa fa-cc-discover" style="color:grey;"></i>
+                  </div>
+                  <!-- card name -->
+                  <label for="fullName">Name on card</label>
+                  <input name="cardName" onInput="chkText(this.value, 'fullName');   "size="24" placeholder="John A. Doe"/>
+                  <br><span id="fullName" style="color: rgb(126, 181, 243)">Full name required</span>
+                  <!-- credit card -->
+                  <label for="creditCard">Credit Card</label>
+                  <input name="cardNum" onInput="chkCC(this.value, 'creditCard');   "size="24" />
+                  <br><span id="creditCard" style="color:rgb(126, 181, 243)">0000 0000 0000 0000</span>
+                  <!-- expiration date -->
+                  <label for="expiration">Expiration Date</label>
+                  <input name="expiration" onInput="chkDate(this.value, 'expiration');" size="8" />
+                  <br><span id="expiration" style="color:rgb(126, 181, 243)">00/0000</span>
+                  <!-- cvv -->
+                  <label for="cvv">CVV</label>
+                  <input name="cvv" onInput="chkCVV(this.value, 'cvv');" size="3" />
+                  <br><span id="cvv" style="color:rgb(126, 181, 243)">000</span><br>
+                  <!-- buttons -->
+                  <!-- hidden input for shopping bag items-->
+                  <input type="hidden" id="item1" name="Watching_Kdrama" value=0>
+                  <input type="hidden" id="item2" name="Not_Your_Noona" value=0>
+                  <input type="hidden" id="item3" name="Kdrama_One_Just" value=0>
+                  <input type="hidden" id="item4" name="Single_Life" value=0>
+                  <input type="hidden" id="item5" name="Goblin_Bride" value=0>
+                  <input type="hidden" id="item6" name="Kdramas_Bandwidth" value=0>
+                  <input type="hidden" id="formTotal" name="formTotal" value=0>
+                  <div id="formButtons"></div><br><br><br><br><br><br><br>
+                  <input class="button" type="reset" value="Reset"/>
+                  <input class="button" type="submit" value="to Checkout" id="submitButton"/>
+                  </div> <!-- buttons -->
+                </div> <!-- col -->
+              </div> <!-- Payment column-->
+            </div> <!-- aligned -->
+          </div> <!-- checkoutForm -->
+
+
+
+        <div id="bottom">
+          <p>Did you find what you were looking for today?</p>
+            <input type="radio" name="feedback" value="yes">Yes<br>
+            <input type="radio" name="feedback" value="no" >No <br>
+            <input type="submit" value="Submit">
+          </form>
+        </div> <!--bottom -->
+      </div> <!-- content -->
+      <div id="footer">We'd love to hear from you! kkutz@email.com 206 W CranberryRidge Road, Lehi, Utah 84043</div>
+      </div> <!-- document -->
+   </body>
+</html>
+
+
+
+<?php
+  // set up variables  
+  // customer info
+  $firstName = $_POST["firstName"];
+  $lastName  = $_POST["lastName"];
+  $phoneNum  = $_POST["phoneNum"];
+  $email     = $_POST["email"];
+  $address   = $_POST["address"];
+  $city      = $_POST["city"];
+  $state     = $_POST["state"];
+  $zip       = $_POST["zipCode"];
+
+  // payment info
+  $type = $_POST["type"];
+  $cardName = $_POST["cardName"];
+  $cardNum = $_POST["cardNum"];
+  $expiration = $_POST["expiration"];
+  $cvv = $_POST["cvv"];
+
+  // shopping bag info
+  $Watching_Kdrama = $_POST["Watching_Kdrama"];
+  $Not_Your_Noona = $_POST["Not_Your_Noona"];
+  $Kdrama_One_Just = $_POST["Kdrama_One_Just"];
+  $Single_Life = $_POST["Single_Life"];
+  $Goblin_Bride = $_POST["Goblin_Bride"];
+  $Kdramas_Bandwidth = $_POST["Kdramas Bandwidth"];
+  $formTotal = $_POST["formTotal"];
+  // slice the bag items into a new array
+  $items = array_slice($_POST, 13, 6);
+
+  // footer input
+  $feedback = $_POST["feedback"];
+
+  // set up months array
+  $months = array( "01" => "January", "02" => "February", "03" => "March", "04" => "April", "05" => "May", "06" => "June", "07" => "July", "08" => "August", "09" => "September", "10" => "October", "11" => "November", "12" => "December");
+?>
+
+<!DOCTYPE html>
+  <html lang="en-us">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Purchase Review</title>
+    <link rel="stylesheet" type="text/css" href="kkutz.css"/>
+    <style>
+      .kutz {
+        color: rgb(126, 181, 243);
+      }
+      #order {
+        border: collapse;
+      }
+      th {
+        color: gray;
+      }
+      .button {
+        border: none;
+        height: 35px;
+        border-radius: 3px;
+        margin: 0 0 10px 0;
+        font-family:"century gothic", sans-serif;
+        font-size: 1em;
+      }
+      #submitButton {
+        background-color: rgb(126, 181, 243);
+      }
+      .order {
+        float: right;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="confirmationPage.php" method="post">
+    <input type="hidden" name="firstName" value='<?php echo "$firstName";?>'/>
+    <input type="hidden" name="lastName" value='<?php echo "$lastName";?>'/>
+    <input type="hidden" name="phoneNum" value='<?php echo "$phoneNum";?>'/>
+    <input type="hidden" name="email" value='<?php echo "$email";?>'/>
+    <input type="hidden" name="address" value='<?php echo "$address";?>'/>
+    <input type="hidden" name="city" value='<?php echo "$city";?>'/>
+    <input type="hidden" name="state" value='<?php echo "$state";?>'/>
+    <input type="hidden" name="zip" value='<?php echo "$zip";?>'/>
+    <div name="kutzDoc" class="document">
+      <div id="header">
+        <h1>K-kutz</h1>
+      </div> <!--header -->
+      <ul id="navBarList">
+            <li class="navBarItem kutz">Order Review</li></a>
+          </ul>
+      <h2>Customer Information</h2>
+      <?php
+        echo "Name: $firstName $lastName<br></br>";
+        echo "Phone: $phoneNum<br></br>";
+        echo "Email: $email<br></br>";
+        echo "Address: $address<br></br>";
+        echo "         $city, $state $zip<br></br>";
+      ?>
+      <hr>
+      <h2>Order Information</h2>
+      <table id="order" cellspacing="10">
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+        </tr>
+      <!-- pull out the items and prices --> 
+      <?php  
+        foreach ($items as $item => $price) {
+          if ($price != 0) {
+            $formattedItem = explode("_", $item);
+            echo "<tr><td>";
+            print_r (implode(" ", $formattedItem));
+            echo "</td><td>\$$price</td></tr>";
+            echo "<input type=\"hidden\" name=\"$item\" value=\"$price\"/>";
+          }
+        }
+      ?>
+      </table>
+      <br>
+      <input type="hidden" name="total" value='<?php echo "$formTotal";?>'/>
+      <input type="hidden" name="cardName" value='<?php echo "$cardName";?>'/>
+      <input type="hidden" name="cardNum" value='<?php echo "$cardNum";?>'/>
+      <input type="hidden" name="type" value='<?php echo "$type";?>'/>
+      <?php
+        echo "\$$formTotal will be charged to your $type, expiring ";
+        $formattedExp = explode("/", $expiration);
+        foreach ($months as $number => $month) {
+          if ($number == $formattedExp[0]){
+            echo "$month $formattedExp[1].";
+            echo "<input type=\"hidden\" name=\"expMonth\" value=\"$month\"/>";
+            echo "<input type=\"hidden\" name=\"expYear\" value=\"$formattedExp[1]\"/>";
+          }
+        }
+      ?>
+      <input class="order button" type="submit" name="cancel" value="Cancel" onclick="reset()"/>
+      <input class="order button" type="submit" name="submit" value="Confirm"   id="submitButton" />
+      <span>&nbsp</span>
+      </form>
+      <br><br>
+      <hr>
+      <div id="footer">We'd love to hear from you! kkutz@email.com 206 W CranberryRidge Road, Lehi, Utah 84043</div>
+    </div> <!-- document -->
+   </form>
+ </body>
+</html>

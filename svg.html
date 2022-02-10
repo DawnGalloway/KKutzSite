@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+  <html lang="en-us">
+  <head>
+    <link rel="stylesheet" type="text/css" href="kkutz.css"/>
+    <title>Kkutz Sales</title>
+    <style>
+      .svg {
+          color: rgb(126, 181, 243);
+      }
+      .circle {
+        display: block;
+        margin: auto;
+      }
+      .center > h2 {
+          text-decoration: underline;
+          letter-spacing: 2px;
+      }
+      img {
+          border-style: double;
+          border-radius: 5px;
+      }
+      #bottom {
+          opacity: .5;
+          text-align: right;
+      }
+      #bottom > p {
+          margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+      <div class="document">
+        <div id="header">
+          <h1>K-kutz</h1>
+        </div> <!--header -->
+        <div class="content">
+          <div id="navBar">
+            <ul id="navBarList">
+              <a class="navBarItem home" href="index.html"><li>Home</li></a>
+              <a class="navBarItem kutz" href="kutz.html"><li>Kutz</li></a>
+              <a class="navBarItem sale" href="sale.html"><li>Sale</li></a>
+              <a class="navBarItem svg"  href="svg.html"><li>SVG</li></a>
+            </ul>
+          </div> <!-- navBar -->
+          <div id="main">
+            <div class="main side">
+              <!-- img from etsy.com, sasamiDesigns-->
+              <svg class="circle" width="90" height="90"> 
+                <circle cx="50" cy="50" r="30" style="fill:grey;stroke:rgb(26, 115, 218);stroke-width:2;"/>
+              </svg>
+            </div> <!-- main side -->
+            <div class="main center">
+              <!-- inline style here-->
+              <h2 style="color:rgb(126, 181, 243);">SVG</h2>
+              <p>1) Scalable Vector Graphics (SVG) are images that look good even when they're scaled to different sizes. Because SVGs are created using XML, they can be easily manipulated. The cirle on the left was drawn using inline svg.<br>
+                <br> 2) The logo added to the upper left corner of this site is an svg. Originally, the image was 512px by 512px. To resize it, I changed the height and width attribute within the svg file. The file size is virtually unchanged regardless of what size the height and width are set(what size the image displays). And it can be resized as many times as needed without any degradation of the image. <br><br> 3) The new shopping bag image on the upper right of the <a href="kutz.html">"Kutz"</a> page is also an svg. It has an id and two classes assigned inside the file. As the previous bag was an icon, I assigned it an id, but now I can apply CSS using the id already within the file. With the logo, I changed the height and width within the file, but on the shopping bag, I've adjusted the size using CSS on the shopping bag's internal id. <br><br> 4) I can also apply CSS to both of the shopping bag's classes(cls-1 and cls-2). In this case, I'm changing the color of the classes to fit with the color palette of my site.<br><br> 5) SVGs are incredibly easy to animate using CSS animations. Now when a customer is on the <a href="kutz.html">"Kutz"</a> page and adds an item to the bag, they get feedback that their click was received in the form of bag movement. </p>
+              <form action="/action_page.php">
+                Email:
+                <input type="email" name="email">
+                <input type="submit" value="Submit">
+              </form>
+            </div> <!-- main center -->
+            <div class="main side">
+            </div> <!-- main side (for use later)-->
+         <div id="bottom">
+           <p>As a thank you for signing up--we'll send you a code %10 off your next purchase.</p>
+          </div> <!--bottom -->
+        </div> <!-- content -->
+        <div id="footer">We'd love to hear from you! kkutz@email.com 206 W Cranberry Ridge Road, Lehi, Utah 84043</div>
+      </div> <!-- document -->
+   </body>
+</html>

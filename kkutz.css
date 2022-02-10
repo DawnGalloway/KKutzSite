@@ -1,0 +1,92 @@
+body {
+  font-family:"century gothic", sans-serif;
+}
+
+#header {
+  color: white;
+  text-align: center;
+  margin: 0;
+  background-color: grey;
+  background-image: url("images/kkutz square.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  overflow: hidden;
+}
+
+#header > h1 {
+  font-family: helvetica, sans-serif;
+  font-size: 2.2em;
+  margin: 0px;
+  padding: 20px;
+}
+
+#header >  p {
+  font-size: 75%;
+}
+
+#navBarList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(58, 58, 58);
+  border-bottom: 5px solid rgb(26, 115, 218);
+}
+
+.navBarItem {
+  float: left;
+}
+
+.navBarItem {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.navBarItem:hover {
+  background-color: hsl(0, 0%, 19%);
+}
+
+.main {
+  float: left;
+  padding: 10px;
+}
+
+.main > a:link {
+  text-decoration: none;
+}
+
+.main > a:hover {
+  color: black;
+}
+
+.main.side {
+  width: 22%;
+}
+
+.main.center {
+  width: 50%;
+}
+
+h2 {
+  font-family: "courier new", serif;
+}
+
+#bottom {
+  clear: both;
+  background-color:  grey;
+  font-size: .9em;
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+#footer {
+  font-size: .8em;
+  font-family: "courier new";
+  margin: 0px 10px;
+  color: rgb(58, 58, 58);
+  float: right;
+}
