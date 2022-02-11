@@ -1,5 +1,5 @@
 # KKutzSite
-Final  project for CS 213 Web Engineering I
+Final  project for CS 213 Web Engineering I  
 Website for a fictional company with digital products
 
 Notes:  
